@@ -25,7 +25,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -71,6 +73,7 @@ dependencies {
     implementation "androidx.compose.material3:material3-window-size-class:$material3_version"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
