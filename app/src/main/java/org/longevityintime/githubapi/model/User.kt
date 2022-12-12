@@ -2,6 +2,7 @@ package org.longevityintime.githubapi.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.longevityintime.githubapi.database.model.UserEntity
 
 @Serializable
 data class User(
@@ -24,3 +25,5 @@ data class User(
 //    @SerialName("type") val type: String,
 //    @SerialName("site_admin") val siteAdmin: Boolean,
 )
+
+fun User.asEntity(): UserEntity = UserEntity(id, login, avatarUrl)

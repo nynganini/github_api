@@ -1,13 +1,22 @@
 package org.longevityintime.githubapi.database
 
-import androidx.room.Dao
-import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import androidx.room.*
 import org.longevityintime.githubapi.database.model.UserEntity
 
 
 @Dao
 interface UserDao {
     @Query("SELECT * FROM users")
-    fun getUsers(): Flow<List<UserEntity>>
+    suspend fun getUsers(): List<UserEntity>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertOrIgnoreUsers(users: List<UserEntity>): List<Long>
+
+    @Update
+    suspend fun updateUsers(users: List<UserEntity>)
+
+    @Transaction
+    suspend fun upsertUsers(users: List<UserEntity>) = upsert(
+        items = users, insertMany = ::insertOrIgnoreUsers, updateMany = ::updateUsers
+    )
 }
