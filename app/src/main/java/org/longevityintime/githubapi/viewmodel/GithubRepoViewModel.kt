@@ -18,16 +18,18 @@ class GithubRepoViewModel @Inject constructor(
     var login: String = ""
         set(value) {
             field = value
-            viewModelScope.launch {
-                val githubRepos = dataRepository.getGithubRepo(value)
-                _uiState.value = if(githubRepos.isNotEmpty()) GithubRepoUiState.Data(githubRepos) else GithubRepoUiState.Empty
-            }
+            onUpdateUi()
         }
-
     private var _uiState: MutableStateFlow<GithubRepoUiState> = MutableStateFlow(GithubRepoUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-
+    fun onUpdateUi(){
+        viewModelScope.launch {
+            _uiState.value = GithubRepoUiState.Loading
+            val githubRepos = dataRepository.getGithubRepo(login)
+            _uiState.value = if(githubRepos.isNotEmpty()) GithubRepoUiState.Data(githubRepos) else GithubRepoUiState.Empty
+        }
+    }
 }
 
 sealed interface GithubRepoUiState {

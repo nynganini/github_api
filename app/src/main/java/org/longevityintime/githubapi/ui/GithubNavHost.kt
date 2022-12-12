@@ -3,8 +3,6 @@ package org.longevityintime.githubapi.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.MutableCreationExtras
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,7 +13,7 @@ import org.longevityintime.githubapi.viewmodel.GithubRepoViewModel
 
 object Routes {
     const val USERS = "users"
-    const val REPOS = "repos/{login}"
+    const val GITHUB_REPOS = "repos/{login}"
 }
 
 @Composable
@@ -45,7 +43,7 @@ fun NavGraphBuilder.userGraph(onNavigate: (String) -> Unit) {
 }
 fun NavGraphBuilder.repositoryGraph(onBack: () -> Unit) {
     composable(
-        route = Routes.REPOS,
+        route = Routes.GITHUB_REPOS,
         arguments = listOf(
             navArgument("login") { type = NavType.StringType }
         )

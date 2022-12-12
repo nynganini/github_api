@@ -15,10 +15,14 @@ class UserViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ): ViewModel() {
 
+    init {
+        onUpdateUi()
+    }
+
     private var _uiState: MutableStateFlow<UserUiState> = MutableStateFlow(UserUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-    init {
+    fun onUpdateUi(){
         viewModelScope.launch {
             val users = dataRepository.getUsers()
             _uiState.value = if(users.isNotEmpty()) UserUiState.Data(users) else UserUiState.Empty
