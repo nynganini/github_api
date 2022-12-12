@@ -22,7 +22,7 @@ data class GithubRepoEntity(
     val htmlUrl: String,
     val updatedAt: Date,
     val stargazersCount: Long,
-    val language: String,
+    val language: String?,
     val login: String // owner of the repository
 )
 

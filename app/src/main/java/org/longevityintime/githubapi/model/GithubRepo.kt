@@ -19,5 +19,5 @@ data class GithubRepo(
 
     @SerialName("updated_at") @Serializable(DateSerializer::class)  val updatedAt: Date,
     @SerialName("stargazers_count") val stargazersCount: Long,
-    @SerialName("language") val language: String,
+    @SerialName("language") val language: String?,
 )

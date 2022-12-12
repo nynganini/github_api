@@ -3,4 +3,10 @@
 
     <string name="user_loading">Loading user list</string>
     <string name="github_repo_loading">Loading repository list</string>
+
+
+    <string name="github_repo_name">Name: %s</string>
+    <string name="github_repo_language">Language: %s</string>
+    <string name="github_repo_updated_at">Updated at: %s</string>
+    <string name="github_repo_stargazers_count">Stargazers count: %d</string>
 </resources>
