@@ -17,8 +17,10 @@ class GithubRepoViewModel @Inject constructor(
 
     var login: String = ""
         set(value) {
-            field = value
-            onUpdateUi()
+            if(field != value) {
+                field = value
+                onUpdateUi()
+            }
         }
     private var _uiState: MutableStateFlow<GithubRepoUiState> = MutableStateFlow(GithubRepoUiState.Loading)
     val uiState = _uiState.asStateFlow()
